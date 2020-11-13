@@ -16,7 +16,9 @@ def start_game():
     player_name = input("What is your name? \n-> ").capitalize()
     wanna_play = input("Hi, {}. Would you like to play the guessing game? (Enter Yes/No)\n-> ".format(player_name))
     attempts = 0
-    show_score()
+    while wanna_play.lower() != "yes" and wanna_play.lower() != "no":
+        print("Oh no!, that is not a valid value. Try again...")
+        wanna_play = input("Would you like to play the guessing game? (Enter Yes/No)\n-> ")
     while wanna_play.lower() == "yes":
         try:
             your_guess = input("Pick a number between 1 and 26 \n-> ")
@@ -32,9 +34,12 @@ def start_game():
                       alphabet[str(int(your_guess))] + alphabet[str((int(your_guess))+1)] + str(random_number))
                 play_again = input("Would you like to play again? (Enter Yes/No) \n-> ")
                 attempts = 0
-                show_score()
                 random_number = int(random.randint(1, 26))
-                if play_again.lower() != "yes":
+                while play_again.lower() != "yes" and play_again.lower() != "no":
+                    print("Oh no!, that is not a valid value. Try again...")
+                    play_again = input("Would you like to play the guessing game? (Enter Yes/No)\n-> ")
+                if play_again.lower() == "no":
+                    show_score()
                     print("That's cool, have a good one!")
                     break
             elif int(your_guess) > random_number:
@@ -47,5 +52,6 @@ def start_game():
             print("Oh no!, that is not a valid value. Try again...")
             print("({})".format(err))
     else:
+        show_score()
         print("That's cool, have a good one!")
 start_game()
