@@ -31,6 +31,8 @@ def start_game():
                 attempts += 1
                 attempts_list.append(attempts)
                 print("It took you {} attempts".format(attempts))
+                if attempts > 26:
+                    attempts = attempts%26
                 print("Code for you is", big_alphabet[str(random_number)] + \
                       small_alphabet[str(attempts)] + str(random.randint(0, 100)) + \
                       small_alphabet[str(random.randint(1, 26))] + big_alphabet[str(random.randint(1, 26))] + \
